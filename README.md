@@ -7,7 +7,7 @@ Before you can run the app, you need to install the necessary dependencies. In t
 ```bash
 
  npm install
- 
+
 ```
 
 ## Getting Started
