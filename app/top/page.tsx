@@ -1,23 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getPopularMovies, getNowPlayingMovies, getTopRated, searchMovies } from '@/app/api/movieApi';
+import {  getTopRated, searchMovies } from '@/app/api/movieApi';
 import MovieCard from '@/components/ui/MovieCard';
 import Navbar from '@/components/ui/Navbar';
 import { getAccountDetails } from '../api/accountApi';
+import { Movie } from '@/type/Movie';
 
-interface Movie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  vote_average: number;
-  release_date: string;
-  price: number;
-}
+
 
 export default function Home() {
-  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState<Movie[]>([]);
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const [avatar, setAvatar] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,11 +33,7 @@ export default function Home() {
   useEffect(() => {
     if (!searchTerm) {  // Fetch categories only if there is no search term
       const fetchMovies = async () => {
-        const popular = await getPopularMovies(1);
-        const nowPlaying = await getNowPlayingMovies(1);
         const topRated = await getTopRated(1);
-        setPopularMovies(popular.data.results.map(mapMovie));
-        setNowPlayingMovies(nowPlaying.data.results.map(mapMovie));
         setTopRatedMovies(topRated.data.results.map(mapMovie));
       };
       fetchMovies();
@@ -62,14 +50,16 @@ export default function Home() {
     }
   }, [searchTerm]);
 
-  const mapMovie = (movie: any): Movie => ({
+  // ตรง mapMovie แก้แบบนี้
+  const mapMovie = (movie: Movie): Movie => ({
     id: movie.id,
     title: movie.title,
     poster_path: movie.poster_path,
-    price: Math.floor(Math.random() * 200) + 100,
     vote_average: movie.vote_average,
     release_date: movie.release_date,
+    price: Math.floor(Math.random() * 200) + 100,
   });
+
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);

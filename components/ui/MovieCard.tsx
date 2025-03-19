@@ -1,16 +1,8 @@
-interface MovieCardProps {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  vote_average: number;
-  release_date: string;
-  price: number;
 
-  onAddToCart: (movie: Movie) => void;
-}
 
 import Link from 'next/link';
-
+import Image from 'next/image';
+import { MovieCardProps } from '@/type/Movie';
 export default function MovieCard({
   id,
   title,
@@ -27,10 +19,12 @@ export default function MovieCard({
       {/* Link รอบรูป */}
       <Link href={`/movie/${id}`}>
         {poster_path ? (
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
-            className="w-full h-72 object-cover cursor-pointer"
+            width={500}
+            height={750}
+            className="w-full h-64 object-cover"
           />
         ) : (
           <div className="w-full h-72 bg-gray-300 flex items-center justify-center cursor-pointer">

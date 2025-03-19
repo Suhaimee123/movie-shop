@@ -1,17 +1,8 @@
 import Link from "next/link";
+import Image from 'next/image';
+import { MovieCardCartProps } from "@/type/Movie";
 
-interface MovieCardCartProps {
-    id: number;
-    title: string;
-    poster_path: string | null;
-    vote_average: number;
-    release_date: string;
-    price: number;
-    selected: boolean;
-    onSelect: () => void;
-    onCardAction: () => void;
-  }
-  
+
   export default function MovieCardCart({
     id,
     title,
@@ -34,8 +25,13 @@ interface MovieCardCartProps {
       >
         {/* รูปภาพ */}
         {poster_path ? (
-          <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} className="w-full h-64 object-cover" />
-        ) : (
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+            width={500}
+            height={750}
+            className="w-full h-64 object-cover"
+          />        ) : (
           <div className="w-full h-64 bg-gray-300 flex items-center justify-center">No Image</div>
         )}
   

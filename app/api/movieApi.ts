@@ -31,7 +31,7 @@ export const getNowPlayingMovies = (page: number = 1) => {
 
 
 
-export const getTopRated = (page: Number = 1) => {
+export const getTopRated = (page: number = 1) => {
   return axiosApi.get('/movie/top_rated',{
     params: {
       language: 'en-US',

@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface NavbarProps {
   avatarUrl?: string | null;
@@ -50,7 +51,11 @@ export default function Navbar({ avatarUrl }: NavbarProps) {
             )}
           </Link>
           {avatarUrl ? (
-            <img src={avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover border border-white" />
+            <Image src={avatarUrl}
+              alt="avatar"
+              width={500}
+              height={750}
+              className="w-8 h-8 rounded-full object-cover border border-white" />
           ) : (
             <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center">
               <span className="text-sm">?</span>

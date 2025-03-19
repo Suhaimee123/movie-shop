@@ -4,15 +4,8 @@ import React, { useState, useEffect } from 'react';
 import MovieCardCart from '@/components/ui/MovieCardCart';
 import Navbar from '@/components/ui/Navbar';
 import { getAccountDetails } from '../api/accountApi';
+import { Movie } from '@/type/Movie';
 
-interface Movie {
-    id: number;
-    title: string;
-    poster_path: string | null;
-    vote_average: number;
-    release_date: string;
-    price: number;
-}
 
 const CartPage: React.FC = () => {
     const [cart, setCart] = useState<Movie[]>([]);
