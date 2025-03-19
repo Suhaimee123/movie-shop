@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getPopularMovies, getNowPlayingMovies, getTopRated, searchMovies } from '@/app/api/movieApi';
 import MovieCard from '@/components/ui/MovieCard';
 import Navbar from '@/components/ui/Navbar';
-import { getAccountDetails } from './api/accountApi';
+import { getAccountDetails } from '../api/accountApi';
 
 interface Movie {
   id: number;
@@ -135,9 +135,7 @@ export default function Home() {
         )}
         {!searchTerm && (
           <>
-            <MovieSection title="🎬 Popular Movies" movies={popularMovies} onAddToCart={handleAddToCart} />
             <MovieSection title="🎬 Now Playing" movies={nowPlayingMovies} onAddToCart={handleAddToCart} />
-            <MovieSection title="🎬 Top Rated" movies={topRatedMovies} onAddToCart={handleAddToCart} />
           </>
         )}
 

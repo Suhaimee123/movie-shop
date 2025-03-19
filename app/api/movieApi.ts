@@ -56,3 +56,8 @@ export const searchMovies = (query: string, page = 1) => {
     },
   });
 };
+
+
+export const getMovieDetail = (movieId: string) => {
+  return axiosApi.get(`/movie/${movieId}S`);
+};
